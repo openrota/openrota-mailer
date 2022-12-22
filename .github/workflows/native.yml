@@ -26,7 +26,12 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Build native executable and upload it as an artifact
-        uses: maxday/quarkus-native-build-docker-action@1
+      - name: Set up JDK
+        uses: actions/setup-java@v3
         with:
-          outputName: "openrota-native-runner"
+          java-version: '11'
+          distribution: temurin
+          cache: 'maven'
+
+      - name: Build native image
+        run: ./mvnw clean package -Dnative -Dquarkus.native.container-build=true
