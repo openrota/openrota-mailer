@@ -1,6 +1,7 @@
 package io.openrota.service;
 
 import io.openrota.domain.EmailData;
+import io.smallrye.mutiny.Uni;
 import io.vertx.mutiny.core.eventbus.EventBus;
 import io.vertx.mutiny.core.eventbus.Message;
 import org.jboss.logging.Logger;
@@ -16,11 +17,9 @@ public class EventBusService {
     @Inject
     EventBus eventBus;
 
-    public void sendEvent(EmailData data) {
-        eventBus.request(data.getEmailType(), data)
-                .onFailure().invoke(e -> LOGGER.error(e.getMessage()))
-                .onItem().transform(Message::body)
-                .subscribe().with(t -> LOGGER.info("Event " + data.getEmailType() + " sent successfully!"));
+    public Uni sendEvent(EmailData data) {
+        return eventBus.request(data.getEmailType(), data)
+                .onItem().transform(Message::body);
     }
 
 }
