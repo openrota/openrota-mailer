@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Openrota resource request status</title>
+</head>
+<body>
+{#if approved is 'true'}
+  <h3>Your resource request has been approved and We have assigned {resourceName} to work on the task.
+  You can now go to “My projects” and view your project status.
+  You can find guidelines for onboarding resources here.
+  In case of any issue please reach out to help@openrota.com.</h3>
+  {#else}
+<h3>Your resource request has been rejected. Please contact Openrota administrator for more details or raise a new request.</h3>
+{/if}
+</body>
+</html>
