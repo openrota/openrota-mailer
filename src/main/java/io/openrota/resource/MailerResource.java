@@ -31,9 +31,7 @@ public class MailerResource {
     @Path("/mail")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response sendMail(@RequestBody EmailData emailData) {
-        eventBusService.sendEvent(emailData).subscribe()
-                .with(item -> LOGGER.info(String.format("Mail %s sent Successfully!", emailData.getEmailType())),
-                      failure -> LOGGER.error(failure));
+        sendEmailEvent(emailData);
         return Response.accepted().entity("Email sent!").build();
     }
 
@@ -41,7 +39,13 @@ public class MailerResource {
     @Path("/multi-mail")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response sendMail(@RequestBody List<EmailData> emailDataList) {
-        emailDataList.stream().parallel().forEach(emailData -> eventBusService.sendEvent(emailData));
+        emailDataList.stream().parallel().forEach(this::sendEmailEvent);
         return Response.accepted().entity("Reminder mails sent!").build();
+    }
+
+    private void sendEmailEvent(EmailData emailData) {
+        eventBusService.sendEvent(emailData).subscribe()
+                .with(item -> LOGGER.info(String.format("Mail %s sent Successfully!", emailData.getEmailType())),
+                      LOGGER::error);
     }
 }

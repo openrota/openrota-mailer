@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{#if approved is 'true'}
+<h3>Your Project extension request #{requestId} for your project {projectName} has been approved and project end date
+    has been updated to {endDate}.
+    You can now go to “My projects” and view your project status.
+    In case of any issue please reach out to help@openrota.com.</h3>
+    {#else}
+<h3>Your Project extension request #{requestId} for your project {projectName} has been rejected. Please contact
+    Openrota manager for more details or raise a new request.</h3>
+{/if}
+</body>
+</html>

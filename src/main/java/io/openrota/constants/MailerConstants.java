@@ -11,6 +11,8 @@ public class MailerConstants {
     public static final String PROJECT_CLOSURE_DUE_REMINDER = "projectClosureDueReminder";
     public static final String PROJECT_CLOSURE_REMINDER = "projectClosureReminder";
     public static final String PROJECT_COMPLETED = "projectCompleted";
+    public static final String PROJECT_EXTENSION_REQ = "projectExtensionReq";
+    public static final String PROJECT_EXTENSION_REQ_STATUS = "projectExtensionReqStatus";
 
     public static final String OPENROTA_INVITATION_SUBJECT = "[Action Required] Invitation from OpenRota";
     public static final String INVITATION_EXPIRATION_SUBJECT = "Your Openrota invitation is expiring";
@@ -21,4 +23,6 @@ public class MailerConstants {
     public static final String PROJECT_CLOSURE_DUE_REMINDER_SUBJECT = "Reminder for dueproject closure";
     public static final String PROJECT_CLOSURE_REMINDER_SUBJECT = "Reminder for project completion";
     public static final String PROJECT_COMPLETED_SUBJECT = "Your project has been completed successfully";
+    public static final String PROJECT_EXTENSION_REQ_SUBJECT = "A new project extension request has been raised";
+    public static final String PROJECT_EXTENSION_REQ_STATUS_SUBJECT = "Your project extension request has been updated";
 }
